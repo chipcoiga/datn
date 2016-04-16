@@ -40,7 +40,7 @@
 		    </div>
 	</header>	
 	<div class="container">
-	    <div class="col-lg-12 search_bar">
+	    <div class="">
 	        <div class="col-lg-6 search_bar">
 	            <div class="input-group">
 	                <input type="text" class="form-control" placeholder="Search for ...">
@@ -63,6 +63,58 @@
 	        </div>
 	    </div>
 	</div>
-
+	<!--define result area -->
+<div class="container">
+    <div class="col-lg-4 search_result" id="search_result">
+        <ul class="list_result">
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+        </ul>     
+    </div>
+    <div class="maps" id="googleMap"></div>
+</div>
 </body>
+<script src="{{ URL::asset('resource/myresource/js/buysell.js')}}"></script>
 </html>

@@ -1,3 +1,16 @@
 .header{
     margin-bottom: 0;
 }
+.search_bar{
+	padding-left: 0;
+}
+.list_result{	
+	border-style: solid;
+	width: 100%;
+	overflow: auto;
+	height: 100%;
+	position: absolute;
+}
+.search_result{
+	padding-left: 0;
+}
