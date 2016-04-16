@@ -11,10 +11,8 @@ class Welcome extends Controller
 {
     public function _welcome()
     {
-       // $location = Location::getLocation();
-       // return view('welcome')->with('location',$location);
-        $location=BuySell::searchKey('thiện');
-        return view('test')->with('location',$location);
+       $location = Location::getLocation();
+        return view('welcome')->with('location',$location);
     }
 
     public function _searchAction(){
@@ -40,5 +38,8 @@ class Welcome extends Controller
         // $poster=$_GET['poster'];
         $result=BuySell::searchKey('thuy sy');
         return view('test')->with('location',$result);
+    }
+    public function test(){
+        return view('detailProduct');
     }
 }

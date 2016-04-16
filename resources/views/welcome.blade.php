@@ -1,65 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <!--JS-->
+    <script src="{{ URL::asset('resource/js/jquery-2.1.4.min.js')}}"></script>
+    <script src="{{ URL::asset('resource/js/bootstrap.min.js')}}"></script>
+    <!--Css-->
     <link rel="stylesheet" href="{{ URL::asset('resource/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('resource/myresource/css/index.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('resource/myresource/css/search_page.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('resource/myresource/css/footer.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('resource/myresource/css/header.css') }}">
 </head>
+
+
+
+
 <body>
-    <div class="header">
-        <div class="logo">cvcv</div>
-        <nav class="menu">
-            <ul class="list-menu">
-                <li class="menu-item">Mua bán Mua bán</li>
-                <li class="menu-item">Cho tặng Cho tặng</li>
-                <li class="menu-item">Đồ thất lạc Đồ thất lạc</li>
-                <li class="menu-item">Đăng xuất Đăng xuất</li>
+    <div class="navbar navbar-default navbar-static-top header">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">LOGO</a>
+                <button type='button' class='navbar-toggle collapsed'
+                data-toggle='collapse'
+                data-target='#myNavbar'>
+                    <span class="sr-only"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <ul class="nav navbar-nav navbar-right collapse
+            navbar-collapse" id="myNavbar">
+                <li><a href="buysell">Mua bán - rao vặt</a></li>
+                <li><a href="share">Cho tặng đồ</a></li>
+                <li><a href="findLost">Tìm đồ thất lạc</a></li>
+                <li><a href="#">Đăng nhập</a></li>
             </ul>
-        </nav>
-    </div>
-    <div class="content">
-        <form action="searchkey" method="get">
-            <div class="search_box">
-                <input name="search_key" type="text" id="search_key" placeholder="Tôi cần ...">
-                <div class="location_city">               
-                    <select name="city_list" id="city_list" title="city_list">
-                        <?php foreach ($location as $city): ?>
-                            <option value="<?php echo $city->locationName;?>"><?php echo $city->locationName;?> </option>
-                        <?php endforeach ?>                       
-                    </select>
-                </div>
-                <button type="submit" class="button_submit">Tìm kiếm</button>
-            </div>
-        </form>
-    </div>
-    <div class="footer">
-        <div class="content">
-            <div class="menu col-lg-3">
-                <h3>menu</h3>
-                this is menu pagethis is menu pagethis is menu pagethis is menu pagethis is menu pagethis is menu page
-            </div>
-            <div class="about-us col-lg-3">
-                <h3>about us</h3>
-                abount usabount usabount usabount usabount usabount usabount usabount us
-            </div>
-            <div class="contact-us col-lg-3">
-                <h3>contact us</h3>
-                contact us this is menu pagethis is menu pagethis is menu pagethis is menu pagethis is menu pagethis is menu
-                page
-            </div>
-            <div class="social-network col-lg-3">
-                <h3>social network</h3>
-                social networkthis is menu pagethis is menu pagethis is menu pagethis is menu pagethis is menu pagethis is
-                menu page
-            </div>
         </div>
-        <div class="bottom-footer">
+    </div>
+    <div class="container content">
+        <div class="col-sm-12">
+            <figure class="">
+                <div class="img">
+                    <a href="buysell"><img class="productImg" src="{{ URL::asset('resource/img/shop.jpg')}}" alt="Find product"/></a>
+                    <a href="share"><img class="lostImg" src="{{ URL::asset('resource/img/search.jpg')}}"/></a>        
+                    <a href="findLost"><img class="shareImg" src="{{ URL::asset('resource/img/share.jpg')}}"/></a>        
+
+                </div>
+            </figure>
+        </div>
+    </div>
+
+    <nav class="footer text-center navbar navbar-default navbar-fixed-bottom">
+        <div class="row footer text-center">
             copyright chipcoiga 2016
         </div>
-    </div>
+    </nav>
 </body>
 
 </html>

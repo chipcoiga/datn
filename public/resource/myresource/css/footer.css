@@ -1,24 +1,6 @@
-.footer{
-    position: absolute;
-    top: 100%;
-    transform: translate(0%, -100%);
-    background:#3c3c3c ;
+.footer {
+    background: #3c3c3c;
     color: white;
-    text-align: justify;
-
-}
-.menu{
-    float: right;
-}
-.about-us{
-    float: left;
-}
-.contact-us{
-    float: left;
-}
-.social-network{
-    float: left;
-}
-.bottom-footer{
-    text-align: center;
+    height: 20px;
+    min-height: 0;
 }
