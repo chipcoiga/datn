@@ -1,0 +1,47 @@
+.content{
+    margin-top: 100px;
+    position: absolute;
+}
+.search_box{
+    position: absolute;
+    min-width: 800px;
+    max-width: 850px;
+    min-height: 30px;
+    top: 50%;
+    left: 50%;
+    /* transform: translate(-50%, -50%); */
+    border: 1px solid red;
+}
+#search_key{
+    font-size: 1.5em;
+    float: left;
+    position: absolute;
+    width: 60%;
+    height: 100%;
+}
+
+
+.location_city{
+    position: absolute;
+    width: 20%;
+    margin-right: 20%;
+    margin-left: 60%;
+    height: 100%;
+}
+#city_list{
+    font-size: 1.5em;
+    width: 100%;
+    height: 100%;
+}
+.button_submit{
+    font-size: 1.5em;
+    /*position: absolute;*/
+    margin-left: 80%;
+    width:20%;
+    height: 100%;
+}
+@media only screen and (max-width: 650px) {
+
+    #search_key { font-size: 1em; }
+    .button_submit{ font-size: 1em; }
+}

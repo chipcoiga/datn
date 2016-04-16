@@ -1,0 +1,32 @@
+.search_bar{
+    width: 100%;
+    height: 30px;
+    background-color: #737373;
+    position: absolute;
+    max-width:450px;
+}
+#search_key{
+    font-size: 1em;
+    position: absolute;
+    width: 60%;
+    height: 100%;
+}
+
+
+.location_city{
+    position: absolute;
+    margin-right: 30%;
+    margin-left: 60%;
+    width: 30%;
+    height: 100%;
+}
+#city_list{
+    font-size: 1em;
+    width: 100%;
+    height: 100%;
+}
+.button_submit{
+    margin-left: 90%;
+    width: 10%;
+    height: 100%;
+}

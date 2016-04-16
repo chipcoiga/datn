@@ -1,0 +1,23 @@
+.header{
+    position: absolute;
+    width: 100%;
+    background: #3c3c3c;
+    color: white;
+    height: 100px;
+}
+.logo{
+    float: left;
+    width: 200px;
+}
+.menu{
+    float: right;
+    width: 500px;
+    /* height: 100%; */
+}
+.menu-item{
+    /* position: absolute; */
+    float: right;
+    margin: 5px;
+    /* height: 100%; */
+    width: 100px;
+}
