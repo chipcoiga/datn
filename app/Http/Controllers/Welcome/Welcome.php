@@ -6,13 +6,20 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use App\Location;
 use App\BuySell;
+use App\Product;
 
 class Welcome extends Controller
 {
     public function _welcome()
-    {
-       $location = Location::getLocation();
-        return view('welcome')->with('location',$location);
+    {      
+        return view('welcome');
+    }
+
+    public function gotoBuySell(){
+        $location = Location::getLocation();
+        $productTypes=Product::getAllProduct();
+        //dd($productTypes);
+        return view('buysell')->with('location',$location)->with('productTypes',$productTypes);
     }
 
     public function _searchAction(){
