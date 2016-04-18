@@ -1,8 +1,11 @@
 <?php
 
-Route::get('/','Welcome\Welcome@_welcome');
-Route::get('buysell','Welcome\Welcome@gotoBuySell');
-Route::get('searchkey','Welcome\Welcome@_searchAction');
-Route::get('gotopostBuySell','Welcome\Welcome@gotoPostBuySell');
-Route::get('postBuySell','Welcome\Welcome@_postBuySell');
-Route::get('test','Welcome\Welcome@test');
+Route::get('/','WelcomeCtrl@_welcome');
+
+//welcome controller
+Route::get('buysell','WelcomeCtrl@gotoBuySell');
+
+//BuySell controller
+Route::post('doSearch','BuySellCtrl@doSearch');
+
+Route::get('test','WelcomeCtrl@test');

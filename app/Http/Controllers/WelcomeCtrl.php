@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Welcome;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
@@ -8,7 +8,7 @@ use App\Location;
 use App\BuySell;
 use App\Product;
 
-class Welcome extends Controller
+class WelcomeCtrl extends Controller
 {
     public function _welcome()
     {      

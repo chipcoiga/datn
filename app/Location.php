@@ -12,7 +12,7 @@ class location extends Model
     
     
     public static function getLocation(){
-        $location = Location::get(['locationName']);
+        $location = Location::get();
         return $location;
     }
 

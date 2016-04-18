@@ -43,21 +43,21 @@
 	    <div class="">
 	        <div class="col-lg-6 search_bar">
 	            <div class="input-group">
-	                <input type="text" class="form-control" placeholder="Search for ...">
-	                <select class="selectpicker ">
+	                <input type="text" class="form-control" id="searchKey" placeholder="Search for ...">
+	                <select class="selectpicker" id="searchCity">
 	               		<?php foreach ($location as $row) {
-	               			echo("<option>".$row->locationName."</option>");
+	               			echo("<option value=".$row->idLocation.">".$row->locationName."</option>");
 	               		}
 	               		?>
 	                </select>
-	                <select class="selectpicker">
+	                <select class="selectpicker" id="searchType">
 	                    <?php foreach ($productTypes as $row) {
-	               			echo("<option>".$row->type."</option>");
+	               			echo("<option value=".$row->id.">".$row->type."</option>");
 	               		}
 	               		?>
 	                </select>
 	            <span class="input-group-btn">
-	                <button class="btn btn-default" type="button">Go!</button>
+	                <button class="btn btn-default" type="button" onclick="doGoClick();">Go!</button>
 	            </span>
 	            </div>
 	        </div>
@@ -65,56 +65,26 @@
 	</div>
 	<!--define result area -->
 <div class="container">
-    <div class="col-lg-4 search_result" id="search_result">
-        <ul class="list_result">
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-            <li>abc</li>
-        </ul>     
+<div class="row">
+	<div class="col-lg-5 col-md-6 col-sm-8 col-xs-12 search_result" id="search_result">
+        <div class="list_result">
+            <div class="row li_tag">
+            	<div class="thumbnails_item"></div>
+            	<div class="info_item">
+            		<div class="title_item">a</div>
+            		<div class="cost_item">b</div>
+            		<div class="timePost_item">c</div>
+            		<div class="button_item">d</div>
+            	</div>
+            </div>            
+        </div>     
     </div>
-    <div class="maps" id="googleMap"></div>
+    <div class="col-lg-7 col-md-6 hidden-sm hidden-xs maps" id="maps">
+    	<div class="map_view" id="map_view"></div>
+    </div>
+</div>  
 </div>
 </body>
+<script src="{{ URL::asset('resource/myresource/js/google_maps.js')}}"></script>
 <script src="{{ URL::asset('resource/myresource/js/buysell.js')}}"></script>
 </html>

@@ -39,19 +39,23 @@ function addMarker(lat, lng, info){
 
 function initMap(){
     map = new google.maps.Map(document.getElementById("map_view"), {
-        center: new google.maps.LatLng(0, 0),
-        zoom: 14,
+        center: new google.maps.LatLng(16.0680319, 107.9385032),
+        zoom: 11,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         mapTypeControl: false,
-        mapTypeControlOptions: {
-            style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR
-        },
-        navigationControl: true,
-        navigationControlOptions: {
-            style: google.maps.NavigationControlStyle.SMALL
+        zoomControl:true,
+        zoomControlOptions: {
+            style:google.maps.ZoomControlStyle.DEFAULT
         }
+        // mapTypeControlOptions: {
+        //     style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR
+        // },
+        // navigationControl: true,
+        // navigationControlOptions: {
+        //     style: google.maps.NavigationControlStyle.SMALL
+        // }
     });
     center = bounds.getCenter();
-    map.fitBounds(bounds);
+    //map.fitBounds(bounds);
 }
 google.maps.event.addDomListener(window, 'load', initMap);

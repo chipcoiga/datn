@@ -16,7 +16,7 @@
 </head>
 <body>
 	<header>
-		<div class="navbar navbar-default navbar-static-top header">
+		<div class="navbar navbar-default navbar-static-top header" id="header">
 		        <div class="container">
 		            <div class="navbar-header">
 		                <a class="navbar-brand" href="/">LOGO</a>
@@ -40,7 +40,7 @@
 		    </div>
 	</header>
 <!--search bar-->
-<div class="container">
+<div class="container" id="search_bar">
     <div class="col-lg-12 search_bar">
         <div class="col-lg-6 search_bar">
             <div class="input-group">
@@ -94,5 +94,5 @@
     <div class="list_product_detail"></div>
 </div>
 </body>
-<script src="{{ URL::asset('resource/myresource/js/detailProduct.js')}}"></script>
+<script src="{{ URL::asset('resource/myresource/js/google_maps.js')}}"></script>
 </html>

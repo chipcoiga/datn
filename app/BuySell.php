@@ -39,4 +39,9 @@ class buysell extends Model
         $results = DB::select('SELECT * FROM buysell WHERE MATCH(title,description) AGAINST(:keyWord)',['keyWord'=>$keyWord] );
         return $results;
     }
+
+    public static function selectTop100()
+    {
+        return BuySell::take(100)->get();
+    }
 }
