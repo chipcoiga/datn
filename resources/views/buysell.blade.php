@@ -68,13 +68,17 @@
 <div class="row">
 	<div class="col-lg-5 col-md-6 col-sm-8 col-xs-12 search_result" id="search_result">
         <div class="list_result">
-            <div class="row li_tag">
-            	<div class="thumbnails_item"></div>
+        	<div class="li_tag">
+            	<div class="thumbnails_item" onclick='doViewMaps("a");'></div>
             	<div class="info_item">
-            		<div class="title_item">a</div>
-            		<div class="cost_item">b</div>
-            		<div class="timePost_item">c</div>
-            		<div class="button_item">d</div>
+            		<div class="content_item" onclick='doViewMaps("a");'>
+            			<div class="title_item">a</div>
+	            		<div class="cost_item">b</div>
+	            		<div class="timePost_item">c</div>
+            		</div>           		
+            		<div class="button_item">
+            			<a href="#"><button>Chi tiết</button></a>
+            		</div>
             	</div>
             </div>            
         </div>     
@@ -85,6 +89,6 @@
 </div>  
 </div>
 </body>
-<script src="{{ URL::asset('resource/myresource/js/google_maps.js')}}"></script>
 <script src="{{ URL::asset('resource/myresource/js/buysell.js')}}"></script>
+<script src="{{ URL::asset('resource/myresource/js/google_maps.js')}}"></script>
 </html>

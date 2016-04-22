@@ -18,7 +18,6 @@ class WelcomeCtrl extends Controller
     public function gotoBuySell(){
         $location = Location::getLocation();
         $productTypes=Product::getAllProduct();
-        //dd($productTypes);
         return view('buysell')->with('location',$location)->with('productTypes',$productTypes);
     }
 

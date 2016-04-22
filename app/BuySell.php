@@ -35,13 +35,17 @@ class buysell extends Model
         }
     }
 
-    public static function searchKey($keyWord){
-        $results = DB::select('SELECT * FROM buysell WHERE MATCH(title,description) AGAINST(:keyWord)',['keyWord'=>$keyWord] );
+    public static function searchKey($keyWord,$searchCity,$searchType){
+        $results = DB::select('SELECT id, title, imglink, cost, latitude, longitude, issell, created_at FROM buysell WHERE (idLocation = :idLocation) AND (type = :idType) AND (MATCH(title,description) AGAINST(:keyWord))',['idLocation'=>$searchCity,'idType'=>$searchType,'keyWord'=>$keyWord] );
         return $results;
     }
 
-    public static function selectTop100()
+    public static function selectTop100($searchCity,$searchType)
     {
-        return BuySell::take(100)->get();
+        return BuySell::select('id','title', 'imglink','cost','latitude','longitude','issell','created_at')->where('idLocation',$searchCity)->where('type',$searchType)->take(100)->get();
+    }
+
+    public static function getDetailByID($id){
+        return BuySell::where('id',$id)->first();
     }
 }

@@ -1,4 +1,3 @@
-//Sample code written by August Li
 var icon = new google.maps.MarkerImage("http://maps.google.com/mapfiles/ms/micons/blue.png",
     new google.maps.Size(32, 32), new google.maps.Point(0, 0),
     new google.maps.Point(16, 32));
@@ -6,12 +5,60 @@ var center = null;
 var map = null;
 var currentPopup;
 var bounds = new google.maps.LatLngBounds();
+var listMarker = [];
+var listPoint =[];
 
-function addMarker(lat, lng, info){
-    var pt = new google.maps.LatLng(lat, lng);
-    bounds.extend(pt);
-    var marker = new google.maps.Marker({
-        position: pt,
+
+
+function doGoClick(){
+    var searchKey = $("#searchKey").val();
+    var searchCity = $("#searchCity").val();
+    var searchType = $("#searchType").val();
+    getProductAjax(searchKey,searchCity,searchType);
+}
+
+function getProductAjax(searchKey,searchCity,searchType){
+    $.post("doSearch",
+        {
+            searchKey: searchKey,
+            searchCity: searchCity,
+            searchType: searchType
+        }
+        ,function(data){
+        if(data != ""){
+            console.log('a'+data);
+            $(".list_result").html('');
+            listPoint =[];
+            for(var i=0;i<data.length;i++){
+                var content_item = "<div class='li_tag'>"
+                    +"<div class='thumbnails_item' onclick='doViewMaps("+data[i].id+");'>"+data[i].title+"</div>"
+                    +"<div class='info_item'>"
+                        +"<div class='content_item' onclick='doViewMaps("+data[i].id+");'>"
+                            +"<div class='title_item'>"+data[i].title+"</div>"
+                            +"<div class='cost_item'>"+data[i].cost+"</div>"
+                            +"<div class='timePost_item'>"+data[i].created_at+"</div>"
+                        +"</div>"
+                        +"<div class='button_item'><a href='viewDetail?id="+data[i].id+"'><button>Chi tiết</button></a></div>"
+                    +"</div>"
+                +"</div>";
+                $(".list_result").append(content_item);
+                listPoint.push({'latitude': data[i].latitude, 'longitude': data[i].longitude,'title':data[i].title, 'id':data[i].id});
+            } 
+            showAll();         
+        }     
+    });
+}
+
+function doViewMaps(id) {
+    clearAll();
+    showMarker(id);
+}
+
+function  addMarkerPoint(lat, lng, title, id) {
+    var myMarker=new google.maps.LatLng(lat, lng);
+    var info = "<a href='viewDetail?id="+id+"'>"+title+"</a>";
+    var marker=new google.maps.Marker({
+        position:myMarker,
         icon: icon,
         map: map
     });
@@ -29,12 +76,31 @@ function addMarker(lat, lng, info){
         popup.open(map, marker);
         currentPopup = popup;
     });
+    //marker.setMap(map);
+    listMarker.push({id,marker});
+}
 
-    google.maps.event.addListener(popup, "closeclick", function() {
-        map.panTo(center);
-        currentPopup = null;
-    });
+function showMarker(id){   
+    clearAll();
+    for(var i =0; i<listPoint.length; i++){
+        if(listPoint[i].id==id){
+            addMarkerPoint(listPoint[i].latitude, listPoint[i].longitude, listPoint[i].title, listPoint[i].id);
+        }
+    }
+}
 
+function clearAll(){
+    for(var i =0; i<listMarker.length; i++){
+        listMarker[i].marker.setMap(null);
+    }
+}
+
+function showAll(){
+    clearAll();
+    listMarker = [];
+    for(var i =0; i<listPoint.length; i++){
+        addMarkerPoint(listPoint[i].latitude, listPoint[i].longitude, listPoint[i].title, listPoint[i].id);     
+    }
 }
 
 function initMap(){
@@ -47,15 +113,26 @@ function initMap(){
         zoomControlOptions: {
             style:google.maps.ZoomControlStyle.DEFAULT
         }
-        // mapTypeControlOptions: {
-        //     style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR
-        // },
-        // navigationControl: true,
-        // navigationControlOptions: {
-        //     style: google.maps.NavigationControlStyle.SMALL
-        // }
     });
     center = bounds.getCenter();
-    //map.fitBounds(bounds);
+    getProductAjax("",1,1);
 }
 google.maps.event.addDomListener(window, 'load', initMap);
+
+$( document ).ready(function() {
+    var h = $(window).height();
+    $("#search_result").css('height',(h-130));
+    $("#maps").css('height',(h-130));
+
+    $("#searchKey").keypress(function(e) {
+        if(e.which == 13) {
+            doGoClick();
+        }
+    });
+});
+
+$(window).resize(function(){
+    var h = $(window).height();
+    $("#search_result").css('height',(h-130));
+    $("#maps").css('height',(h-130));  
+});

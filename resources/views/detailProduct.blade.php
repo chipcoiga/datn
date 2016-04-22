@@ -85,7 +85,15 @@
                     <div class="social_network"></div>
                 </div>
                 <div class="col-sm-7">
-                    <div class="info_product"></div>
+                    <div class="info_product">
+                        <?php
+                            echo $data;
+                            echo '<script type="text/javascript">'
+                               , 'showAll();'
+                               , '</script>'
+                            ;
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>
