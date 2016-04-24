@@ -27,7 +27,7 @@ function getProductAjax(searchKey,searchCity,searchType){
         ,function(data){
         if(data != ""){
             console.log('a'+data);
-            $(".list_result").html('');
+            $(".show_result").html('');
             listPoint =[];
             for(var i=0;i<data.length;i++){
                 var content_item = "<div class='li_tag'>"
@@ -41,10 +41,12 @@ function getProductAjax(searchKey,searchCity,searchType){
                         +"<div class='button_item'><a href='viewDetail?id="+data[i].id+"'><button>Chi tiết</button></a></div>"
                     +"</div>"
                 +"</div>";
-                $(".list_result").append(content_item);
+                $(".show_result").append(content_item);
                 listPoint.push({'latitude': data[i].latitude, 'longitude': data[i].longitude,'title':data[i].title, 'id':data[i].id});
             } 
             showAll();         
+        }else{
+            $(".msg").text('Không tìm thấy dữ liệu').show().fadeOut(2000);
         }     
     });
 }
@@ -105,8 +107,8 @@ function showAll(){
 
 function initMap(){
     map = new google.maps.Map(document.getElementById("map_view"), {
-        center: new google.maps.LatLng(16.0680319, 107.9385032),
-        zoom: 11,
+        center: new google.maps.LatLng(16.060244698576117, 108.18938446044922),
+        zoom: 12,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         mapTypeControl: false,
         zoomControl:true,

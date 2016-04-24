@@ -10,42 +10,27 @@ use App\Product;
 
 class WelcomeCtrl extends Controller
 {
-    public function _welcome()
+    public function gotoWelcome()
     {      
         return view('welcome');
     }
 
-    public function gotoBuySell(){
+    public function gotobuysell(){
         $location = Location::getLocation();
         $productTypes=Product::getAllProduct();
         return view('buysell')->with('location',$location)->with('productTypes',$productTypes);
     }
 
-    public function _searchAction(){
-    	$locationName = $_GET['city_list'];
-    	$search_key = $_GET['search_key'];
-    	if($l)
-    	$result=Location::getLocationByLocationName($locationName);
-    	if($result){
-    		return view(index)->with($result->locationName);
-    	}
-    	return view('index')->with();
-    	
+    public function gotoshare(){
+
+    }
+
+    public function gotofindLost(){
+        
     }
 
     public function gotoPostBuySell(){
-        return view('postBuySell');
-    }
-    public function _postBuySell(){
-        // $title=$_GET['title'];
-        // $description=$_GET['description'];
-        // $cost=$_GET['cost'];
-        // $sdt=$_GET['sdt'];
-        // $poster=$_GET['poster'];
-        $result=BuySell::searchKey('thuy sy');
-        return view('test')->with('location',$result);
-    }
-    public function test(){
-        return view('detailProduct');
+        $productTypes=Product::getAllProduct();
+        return view('postBuySell')->with('productTypes',$productTypes);
     }
 }

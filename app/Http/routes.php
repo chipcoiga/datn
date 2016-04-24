@@ -1,9 +1,14 @@
 <?php
 
-Route::get('/','WelcomeCtrl@_welcome');
+
 
 //welcome controller
-Route::get('buysell','WelcomeCtrl@gotoBuySell');
+Route::get('/','WelcomeCtrl@gotoWelcome');
+Route::get('gotoWelcome','WelcomeCtrl@gotoWelcome');
+Route::get('gotobuysell','WelcomeCtrl@gotobuysell');
+Route::get('gotopostbuysell','WelcomeCtrl@gotoPostBuySell');
+Route::get('gotoshare','WelcomeCtrl@gotoshare');
+Route::get('gotofindLost','WelcomeCtrl@gotofindLost');
 
 //BuySell controller
 Route::post('doSearch','BuySellCtrl@doSearch');

@@ -1,0 +1,17 @@
+.photo_upload{
+	text-align: center;
+}
+.maps {
+	margin-top: 20px;
+    border: solid;
+    height: 500px;
+}
+
+#InputFile_1, #InputFile_2, #InputFile_3, #InputFile_4 {
+    visibility: hidden;
+}
+
+#InputFile1, #InputFile2, #InputFile3, #InputFile4 {
+    width: 100px;
+    height: 100px;
+}

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ URL::asset('resource/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('resource/css/bootstrap-select.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('resource/myresource/css/detailProduct.css') }}">
+   
 </head>
 <body>
 	<header>
