@@ -15,4 +15,7 @@ Route::post('doSearch','BuySellCtrl@doSearch');
 Route::get('viewDetail','BuySellCtrl@viewDetail');
 Route::get('share','BuySellCtrl@doDetail');
 
+//PostBuySellCtrl
+Route::post('dopostproduct','PostBuySellCtrl@dopostproduct');
+
 Route::get('test','WelcomeCtrl@test');

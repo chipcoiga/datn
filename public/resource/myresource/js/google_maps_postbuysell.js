@@ -42,8 +42,38 @@ function isFormValid(){
 
 function doPostBuySell(){        
     if(isFormValid()){
-        //post
-        console.log('true');
+        var dataSubmit = new FormData();
+
+        dataSubmit.append('title_product',$('#title_product').val());
+        dataSubmit.append('type_product',$('#type_product').val());
+        dataSubmit.append('description_detail',$('#description_detail').val());
+        dataSubmit.append('address_product_lg',$('#address_product_lg').val());
+        dataSubmit.append('cost_product',$('#cost_product').val());
+        dataSubmit.append('mobilephone',$('#mobilephone').val());
+        dataSubmit.append('address_product_sm',$('#address_product_sm').val());
+        dataSubmit.append('InputFile[0]',$('#InputFile_1')[0].files[0]);
+        dataSubmit.append('InputFile[1]',$('#InputFile_2')[0].files[0]);
+        dataSubmit.append('InputFile[2]',$('#InputFile_3')[0].files[0]);
+        dataSubmit.append('InputFile[3]',$('#InputFile_4')[0].files[0]);
+        $.ajax({
+            url: 'dopostproduct',
+            type: 'POST',
+            processData: false, // important
+            contentType: false, // important
+            dataType : 'json',
+            data: dataSubmit,
+            success:function(response){
+                console.log(response);
+            }
+        });
+        // $.post("dopostproduct",
+        // {
+        //     data: "data"
+        // },
+        // function(data){
+
+        // });
+        // console.log(dataSubmit.get('InputFile_3'));
     }else{
         console.log('false');
     }

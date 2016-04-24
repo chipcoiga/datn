@@ -46,7 +46,7 @@
                 <div class="col-lg-6 col-sm-6">
                     <fieldset class="form-group">
                         <label for="title_product" class="title_product label_title">Tiêu đề</label>
-                        <input type="email" class="form-control" id="title_product" maxlength="80"
+                        <input type="text" class="form-control" id="title_product" maxlength="80"
                                placeholder="Tiêu đề dưới 80 ký tự">
                     </fieldset>
                 </div>
@@ -71,7 +71,7 @@
                 <div class="col-lg-12 col-md-12 hidden-sm hidden-xs">
                     <fieldset class="form-group">
                         <label for="address_product_lg" class="address_product_lg label_title">Địa chỉ</label>
-                        <input type="email" class="form-control" id="address_product_lg" maxlength="80"
+                        <input type="text" class="form-control" id="address_product_lg" maxlength="80"
                                 >
                         <small class="text-muted">Kéo con trỏ ở bản đồ bên cạnh đến địa điểm của bạn</small>
                     </fieldset>
@@ -94,25 +94,25 @@
                     <div class="row photo_upload">
                         <div class="col-lg-3 col-md-6 col-sm-3 col-xs-6">
                             <fieldset class="form-group">
-                                <input type="file" id="InputFile_1">
+                                <input type="file" name="InputFile" id="InputFile_1">
                                 <img class="img-thumbnail " id="InputFile1" src="{{ URL::asset('resource/img/photoupload.jpg')}}" alt="your image"/>
                             </fieldset>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-3 col-xs-6">
                             <fieldset class="form-group">
-                                <input type="file" id="InputFile_2">
+                                <input type="file" name="InputFile" id="InputFile_2">
                                 <img class="img-thumbnail " id="InputFile2" src="{{ URL::asset('resource/img/photoupload.jpg')}}" alt="your image"/>
                             </fieldset>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-3 col-xs-6">
                             <fieldset class="form-group">
-                                <input type="file" id="InputFile_3">
+                                <input type="file" name="InputFile" id="InputFile_3">
                                 <img class="img-thumbnail " id="InputFile3" src="{{ URL::asset('resource/img/photoupload.jpg')}}" alt="your image"/>
                             </fieldset>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-3 col-xs-6">
                             <fieldset class="form-group">
-                                <input type="file" id="InputFile_4">
+                                <input type="file" name="InputFile" id="InputFile_4">
                                 <img class="img-thumbnail" id="InputFile4" src="{{ URL::asset('resource/img/photoupload.jpg')}}" alt="your image"/>
                             </fieldset>
                         </div>
