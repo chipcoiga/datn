@@ -9,6 +9,7 @@
 
 #InputFile_1, #InputFile_2, #InputFile_3, #InputFile_4 {
     visibility: hidden;
+    width: 0%;
 }
 
 #InputFile1, #InputFile2, #InputFile3, #InputFile4 {
