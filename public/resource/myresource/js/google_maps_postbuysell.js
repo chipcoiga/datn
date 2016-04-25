@@ -50,11 +50,15 @@ function doPostBuySell(){
         dataSubmit.append('address_product_lg',$('#address_product_lg').val());
         dataSubmit.append('cost_product',$('#cost_product').val());
         dataSubmit.append('mobilephone',$('#mobilephone').val());
-        dataSubmit.append('address_product_sm',$('#address_product_sm').val());
+        dataSubmit.append('post_latitude',$('#post_latitude').val());
+        dataSubmit.append('post_longitude',$('#post_longitude').val());
+        dataSubmit.append('city_code',$('#city_code').val());
+        //dataSubmit.append('address_product_sm',$('#address_product_sm').val());
         dataSubmit.append('InputFile[0]',$('#InputFile_1')[0].files[0]);
         dataSubmit.append('InputFile[1]',$('#InputFile_2')[0].files[0]);
         dataSubmit.append('InputFile[2]',$('#InputFile_3')[0].files[0]);
         dataSubmit.append('InputFile[3]',$('#InputFile_4')[0].files[0]);
+        //console.log('fs');
         $.ajax({
             url: 'dopostproduct',
             type: 'POST',
