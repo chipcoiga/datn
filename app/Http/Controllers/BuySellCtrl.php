@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Location;
 use App\BuySell;
 use App\Product;
+use Session;
 
 class BuySellCtrl extends Controller
 {
 	public function doSearch(){
+		//return response()->json("result");
 		$searchKey = $_POST["searchKey"];
 		$searchCity = $_POST["searchCity"];
 		$searchType = $_POST["searchType"];
@@ -25,11 +27,8 @@ class BuySellCtrl extends Controller
 
 	public function viewDetail(){
 		$id = $_GET["id"];
-		$result = BuySell::getDetailByID($id);
-		if($result){
-			return view('detailProduct')->with('data',$result);
-		}else{
-			return view('error');
-		}		
+		$location = Location::getLocation();
+        $productTypes=Product::getAllProduct();
+		return view('detailProduct')->with('idProduct',$id)->with('location',$location)->with('productTypes',$productTypes)->with('user', Session::get('user'));		
 	}
 }

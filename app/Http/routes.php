@@ -1,21 +1,33 @@
 <?php
 
 
+Route::group(['middleware' => 'web'], function () {
 
-//welcome controller
-Route::get('/','WelcomeCtrl@gotoWelcome');
-Route::get('gotoWelcome','WelcomeCtrl@gotoWelcome');
-Route::get('gotobuysell','WelcomeCtrl@gotobuysell');
-Route::get('gotopostbuysell','WelcomeCtrl@gotoPostBuySell');
-Route::get('gotoshare','WelcomeCtrl@gotoshare');
-Route::get('gotofindLost','WelcomeCtrl@gotofindLost');
+    Route::get('/','WelcomeCtrl@gotoWelcome');
+	Route::get('gotoWelcome','WelcomeCtrl@gotoWelcome');
+	Route::get('gotobuysell','WelcomeCtrl@gotobuysell');
+	Route::get('gotopostbuysell','WelcomeCtrl@gotoPostBuySell');
+	Route::get('gotoshare','WelcomeCtrl@gotoshare');
+	Route::get('gotofindLost','WelcomeCtrl@gotofindLost');
 
-//BuySell controller
-Route::post('doSearch','BuySellCtrl@doSearch');
-Route::get('viewDetail','BuySellCtrl@viewDetail');
-Route::get('share','BuySellCtrl@doDetail');
+	//BuySell controller
+	Route::post('doSearch','BuySellCtrl@doSearch');
+	Route::get('viewDetail','BuySellCtrl@viewDetail');
+	Route::get('share','BuySellCtrl@doDetail');
 
-//PostBuySellCtrl
-Route::post('dopostproduct','PostBuySellCtrl@dopostproduct');
 
-Route::get('test','WelcomeCtrl@test');
+	//PostBuySellCtrl
+	Route::post('dopostproduct','PostBuySellCtrl@dopostproduct');
+
+	//DetailProductCtrl
+	Route::post('getProductDetail','DetailProductCtrl@getProductDetail');
+
+	//Common
+	Route::post('dologin','WelcomeCtrl@dologin');
+	Route::post('doregister','WelcomeCtrl@doregister');
+	Route::get('dologout','WelcomeCtrl@dologout');
+
+	//Admin
+	Route::get('domanagement','AdminCtrl@domanagement');
+	Route::post('getListPostFirstTime','AdminCtrl@getListPostFirstTime');
+});

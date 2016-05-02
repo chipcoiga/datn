@@ -10,7 +10,7 @@ class image extends Model
     protected $primaryKey='id';
     
     public static function getImage($idpost){
-        $listImage = Image::where('idpost',$idpost);
+        $listImage = Image::where('idpost',$idpost)->get();
         return $listImage;
     }
 

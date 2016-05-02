@@ -9,23 +9,6 @@ class buysell extends Model
 {
     protected $table = 'buysell';
     protected $primaryKey='id';
-    
-    public static function insertBuy($checker, $poster, $title, $description, $postermobile, $cost, $latitude, $longitude, $type, $issell){
-        $buysell = new BuySell();
-        if($checker>0){
-            $buysell->checker = $checker;
-        }       
-        $buysell->poster = $poster;
-        $buysell->title = $title;
-        $buysell->description = $description;
-        $buysell->postermobile = $postermobile;
-        $buysell->cost = $cost;
-        $buysell->latitude = $latitude;
-        $buysell->longitude = $longitude;
-        $buysell->type = $type;
-        $buysell->issell = $issell;
-        $buysell->save();
-    }
 
     public static function postproduct($poster, $title_product, $type_product, $description_detail, $address_product_lg, $cost_product, $imglink, $mobilephone, $post_latitude, $post_longitude, $city_code){
         //return "result";
@@ -44,6 +27,7 @@ class buysell extends Model
         $buysell->place_id = $city_code;
         $buysell->fullAddress = $address_product_lg;
         $buysell->save();
+        return DB::getPdo()->lastInsertId();
     }
 
     public static function updateBuyChecker($id, $checker){
@@ -55,16 +39,22 @@ class buysell extends Model
     }
 
     public static function searchKey($keyWord,$searchCity,$searchType){
-        $results = DB::select('SELECT id, title, imglink, cost, latitude, longitude, issell, created_at FROM buysell WHERE (idLocation = :idLocation) AND (type = :idType) AND (MATCH(title,description) AGAINST(:keyWord))',['idLocation'=>$searchCity,'idType'=>$searchType,'keyWord'=>$keyWord] );
+        $results = DB::select('SELECT id, title, imglink, cost, latitude, longitude, created_at FROM buysell WHERE (place_id = :idLocation) AND (checker <> 0) AND (type = :idType) AND (MATCH(title,description) AGAINST(:keyWord IN BOOLEAN MODE))',['idLocation'=>$searchCity,'idType'=>$searchType,'keyWord'=>$keyWord] );
         return $results;
     }
 
     public static function selectTop100($searchCity,$searchType)
     {
-        return BuySell::select('id','title', 'imglink','cost','latitude','longitude','issell','created_at')->where('idLocation',$searchCity)->where('type',$searchType)->take(100)->get();
+        return BuySell::select('id','title', 'imglink','cost','latitude','longitude','created_at')->where('place_id',$searchCity)->where('type',$searchType)->where('checker','<>',0)->take(100)->get();
     }
 
     public static function getDetailByID($id){
         return BuySell::where('id',$id)->first();
+    }
+
+    public static function getListUnCheck(){
+        $result = DB::select('SELECT u.username, u.sdt, b.title, b.description, b.cost, b.created_at, p.type FROM buysell b INNER JOIN user u ON b.poster = u.id INNER JOIN producttype p ON b.type = p.id WHERE b.created_at >= (now() - INTERVAL 60 DAY)');
+        //var_dump($result);
+        return $result;
     }
 }

@@ -1,20 +1,33 @@
+.big_product{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
 .picture_product{
     text-align: center;
-    border: black;
+    border: solid;
+    width: 100%;
+    height: auto;
+}
+.picture_erea{
+    margin-bottom: 15px;
+}
+.full_img{
+    margin-bottom: 5px;
 }
 .full_img img{
     vertical-align: middle;
-    max-width: 400px;
-    max-height: 400px;
-
+    max-width: 100%;
+    max-height: auto;
     top:0;
     left: 0;
 }
 
 .thumbnail_img img{
-    vertical-align: middle;
-    height: 100px;
+    vertical-align: middle; 
+    margin: 5px; 
     width: 100px;
+    height: 100px;
 }
 .map_view{
     width: 100%;
@@ -22,4 +35,7 @@
 }
 .header{
     margin-bottom: 0;
+}
+#cost_product, #title_product{
+    font-weight: bold;
 }

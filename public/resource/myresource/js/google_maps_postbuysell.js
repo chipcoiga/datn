@@ -1,3 +1,8 @@
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
 var icon = new google.maps.MarkerImage("resource/img/mapmarker48.png",
     new google.maps.Size(48, 48), new google.maps.Point(0, 0),
     new google.maps.Point(24, 48));
@@ -43,7 +48,6 @@ function isFormValid(){
 function doPostBuySell(){        
     if(isFormValid()){
         var dataSubmit = new FormData();
-
         dataSubmit.append('title_product',$('#title_product').val());
         dataSubmit.append('type_product',$('#type_product').val());
         dataSubmit.append('description_detail',$('#description_detail').val());
@@ -53,7 +57,7 @@ function doPostBuySell(){
         dataSubmit.append('post_latitude',$('#post_latitude').val());
         dataSubmit.append('post_longitude',$('#post_longitude').val());
         dataSubmit.append('city_code',$('#city_code').val());
-        //dataSubmit.append('address_product_sm',$('#address_product_sm').val());
+        dataSubmit.append('address_product_sm',$('#address_product_sm').val());
         dataSubmit.append('InputFile[0]',$('#InputFile_1')[0].files[0]);
         dataSubmit.append('InputFile[1]',$('#InputFile_2')[0].files[0]);
         dataSubmit.append('InputFile[2]',$('#InputFile_3')[0].files[0]);
@@ -67,17 +71,9 @@ function doPostBuySell(){
             dataType : 'json',
             data: dataSubmit,
             success:function(response){
-                console.log(response);
+                alert(response);
             }
         });
-        // $.post("dopostproduct",
-        // {
-        //     data: "data"
-        // },
-        // function(data){
-
-        // });
-        // console.log(dataSubmit.get('InputFile_3'));
     }else{
         console.log('false');
     }
@@ -102,7 +98,7 @@ function  addMarkerPoint(lat, lng) {
         }, 
             function(responses) 
             {     
-                console.log("post buysell"+responses); 
+                console.log(responses); 
                 $('#post_latitude').val(subm_lat);
                 $('#post_longitude').val(subm_lng);
                if (responses && responses.length > 0) 

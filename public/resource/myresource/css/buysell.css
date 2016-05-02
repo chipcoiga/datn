@@ -1,6 +1,6 @@
 
 .search_bar{
-	padding-left: 0;
+	min-height: 0;
 }
 .list_result{	
 	border-style: solid;
@@ -17,7 +17,6 @@
 	padding-top: 15px;
 }
 .map_view{
-	margin-right: 15px;
 	height: 100%;
 	border-style: solid;
 }
@@ -43,4 +42,7 @@
 .msg{
 	font-size: large;
 	color: red;
+}
+a > button {
+	float: right;
 }

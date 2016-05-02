@@ -1,3 +1,8 @@
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
 function readURL(input, id) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();

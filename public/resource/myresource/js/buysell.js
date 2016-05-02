@@ -1,4 +1,8 @@
-
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
 var listPoint =[];
 function doGoClick(){
 	var searchKey = $("#searchKey").val();
@@ -6,6 +10,8 @@ function doGoClick(){
 	var searchType = $("#searchType").val();
 	getProductAjax(searchKey,searchCity,searchType);
 }
+
+
 
 function getProductAjax(searchKey,searchCity,searchType){
 	$.post("doSearch",

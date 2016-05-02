@@ -1,3 +1,9 @@
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+
 var icon = new google.maps.MarkerImage("http://maps.google.com/mapfiles/ms/micons/blue.png",
     new google.maps.Size(32, 32), new google.maps.Point(0, 0),
     new google.maps.Point(16, 32));
@@ -7,7 +13,6 @@ var currentPopup;
 var bounds = new google.maps.LatLngBounds();
 var listMarker = [];
 var listPoint =[];
-
 
 
 function doGoClick(){
@@ -25,13 +30,14 @@ function getProductAjax(searchKey,searchCity,searchType){
             searchType: searchType
         }
         ,function(data){
+            console.log('a'+data);
         if(data != ""){
             console.log('a'+data);
             $(".show_result").html('');
             listPoint =[];
-            for(var i=0;i<data.length;i++){
+            for(var i=data.length-1;i>=0;i--){
                 var content_item = "<div class='li_tag'>"
-                    +"<div class='thumbnails_item' onclick='doViewMaps("+data[i].id+");'>"+data[i].title+"</div>"
+                    +"<div class='thumbnails_item' onclick='doViewMaps("+data[i].id+");'><img class='thumbnails_item' src='uploads/"+data[i].imglink+"' alt="+data[i].title+"/></div>"
                     +"<div class='info_item'>"
                         +"<div class='content_item' onclick='doViewMaps("+data[i].id+");'>"
                             +"<div class='title_item'>"+data[i].title+"</div>"
@@ -117,9 +123,10 @@ function initMap(){
         }
     });
     center = bounds.getCenter();
-    getProductAjax("",1,1);
+    getProductAjax("",'ChIJEyolkscZQjERBn5yhkvL8B0',1);
 }
 google.maps.event.addDomListener(window, 'load', initMap);
+
 
 $( document ).ready(function() {
     var h = $(window).height();
