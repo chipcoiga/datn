@@ -27,4 +27,38 @@ class AdminCtrl extends Controller
 		//var_dump($result);
 		return response()->json($result);
 	}
+
+	public function doactionaccept()
+	{
+		$listIDPost=$_POST['listchecked'];
+		$action_type = $_POST['action_type'];
+		//1: duyet
+		//2: khong duyet
+		//3: delete bai
+		//var_dump($action_type);
+		if($action_type == 1){
+			BuySell::acceptPost($listIDPost);
+		}else if($action_type == 2){
+			BuySell::unAcceptPost($listIDPost);
+		}else{
+			BuySell::deletePost($listIDPost);
+		}
+		return response()->json($listIDPost);
+	}
+
+	public function load_byType(){
+		$type_filter = $_POST['type_filter'];
+		$result;
+		if($type_filter == 1){
+			$result = BuySell::getListUnCheck();
+		}else if($type_filter == 2){
+			$result = BuySell::getListOldest();
+		}else if($type_filter == 3){
+
+		}else if($type_filter == 4){
+			$result = BuySell::getListChecked();
+		}
+
+		return response()->json($result);
+	}
 }

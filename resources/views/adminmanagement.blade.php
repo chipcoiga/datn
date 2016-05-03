@@ -52,7 +52,7 @@
 <div class="container">
 	<ul class="nav nav-tabs">
 	  <li class="active"><a data-toggle="tab" href="#buysellpost">Quản lý bài đăng</a></li>
-	  <li><a data-toggle="tab" href="#usermanage">Quản lý người dùng</a></li>
+	  <li><a data-toggle="tab" href="#usermanagement">Quản lý người dùng</a></li>
 	</ul>
 
 	<div class="tab-content">
@@ -60,7 +60,7 @@
 	    <h3>Menu 1</h3>
 	    <div class="row form-group">
 		    <div class="col-lg-4 col-md-5 col-sm-6">
-		    	<select class="form-control" id="type_filter">
+		    	<select class="form-control" id="type_filter" onchange="load_byType();">
 		    		<option value="1">Bài đăng chưa duyệt</option>
 		    		<option value="2">Bài đăng quá cũ</option>
 		    		<option value="3">Bài đăng vi phạm</option>
@@ -81,64 +81,30 @@
 			    	</select>
 		    	</div>
 	    		<div class="col-lg-4 col-md-5 col-sm-4 col-xs-5">
-	    			<button class="form-control" type="button">Thực hiện</button>
+	    			<button class="form-control" type="button" onclick="accept_action();">Thực hiện</button>
 	    		</div>		    
 	    	</div>
 	    </div>
-	    <table class="table table-striped">
+	    <table class="table table-striped" id="table_post">
 		    <head>
     			<td class="checker">
-    				<input type="checkbox" id="checker_header"></input>
+    				<input type="checkbox" id="checker_header" onchange="checker_header_checked();"></input>
     			</td>
     			<td>
 		    		<div class="col-lg-2 col-md-2 hidden-sm hidden-xs author">
-		    			<span>Người đăng</span>
+		    			<span class="title_header">Người đăng</span>
 		    		</div>
-		    		<div class="col-lg-5 col-md-5 content">
-		    			<span>Bài đăng</span>
+		    		<div class="col-lg-6 col-md-6 content">
+		    			<span class="title_header">Bài đăng</span>
 		    		</div>
-		    		<div class="col-lg-3 col-md-3  hidden-sm hidden-xs pictures">
-		    			<span>Hình ảnh</span>
+		    		<div class="col-lg-2 col-md-2  hidden-sm hidden-xs">
+		    			<span class="title_header">Chuyên mục</span>
 		    		</div>
 		    		<div class="col-lg-2 col-md-2  hidden-sm hidden-xs day_submit">
-		    			<span>Thời gian</span>
+		    			<span class="title_header">Thời gian</span>
 		    		</div>
 	    		</td>	
 		    </head>
-	    	<tr>
-	    		<td class="checker">
-    				<input type="checkbox" id="checker_header"></input>
-	    		</td>
-	    		<td>
-		    		<div class="col-lg-2 col-md-2 author">
-		    			<span id="auther_name">s</span>
-		    			<span id="auther_sdt">c</span>
-		    		</div>
-		    		<div class="col-lg-5 col-md-5 content">
-		    			<span id="title_post">Tiêu đề</span>
-		    			<p id="content_post">contetn post</p>
-		    		</div>
-		    		<div class="col-lg-3 col-md-3 pictures">sdf</div>
-		    		<div class="col-lg-2 col-md-2  day_submit">sdf</div>
-	    		</td>
-	    	</tr>
-	    	<tr>
-	    		<td class="checker">
-    				<input type="checkbox" name="checker"></input>
-	    		</td>
-	    		<td>
-		    		<div class="col-lg-2 col-md-2 author">
-		    			<span id="auther_name">s</span>
-		    			<span id="auther_sdt">c</span>
-		    		</div>
-		    		<div class="col-lg-5 col-md-5 content">
-		    			<span id="title_post">Tiêu đề</span>
-		    			<p id="content_post">contetn post</p>
-		    		</div>
-		    		<div class="col-lg-3 col-md-3 pictures">sdf</div>
-		    		<div class="col-lg-2 col-md-2  day_submit">sdf</div>
-	    		</td>
-	    	</tr>
 	    </table>
 	    <div class="row">    	
 	    	<div class="list_action_bottom"></div>

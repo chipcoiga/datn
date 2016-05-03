@@ -1,3 +1,6 @@
 .author{
 	float: left;
 }
+.bold_title,.title_header{
+	font-weight: bold;
+}

@@ -30,4 +30,6 @@ Route::group(['middleware' => 'web'], function () {
 	//Admin
 	Route::get('domanagement','AdminCtrl@domanagement');
 	Route::post('getListPostFirstTime','AdminCtrl@getListPostFirstTime');
+	Route::post('doactionaccept','AdminCtrl@doactionaccept');
+	Route::post('load_byType','AdminCtrl@load_byType');
 });

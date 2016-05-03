@@ -53,8 +53,34 @@ class buysell extends Model
     }
 
     public static function getListUnCheck(){
-        $result = DB::select('SELECT u.username, u.sdt, b.title, b.description, b.cost, b.created_at, p.type FROM buysell b INNER JOIN user u ON b.poster = u.id INNER JOIN producttype p ON b.type = p.id WHERE b.created_at >= (now() - INTERVAL 60 DAY)');
+        $result = DB::select('SELECT u.username, u.sdt, b.id, b.title, b.description, b.cost, b.created_at, p.type FROM buysell b INNER JOIN user u ON b.poster = u.id INNER JOIN producttype p ON b.type = p.id WHERE b.created_at >= (now() - INTERVAL 60 DAY) AND b.checker = 0');
         //var_dump($result);
         return $result;
     }
+
+    public static function acceptPost($listIDPost)
+    {
+        DB::table('buysell')->whereIn('id', $listIDPost)->update(['checker' => 1]);
+    }
+
+    public static function unAcceptPost($listIDPost)
+    {
+        DB::table('buysell')->whereIn('id', $listIDPost)->update(['checker' => 0]);
+    }
+
+    public static function deletePost($listIDPost)
+    {
+        DB::table('buysell')->whereIn('id', $listIDPost)->delete();
+    }
+    public static function getListOldest()
+    {
+        $result = DB::select('SELECT u.username, u.sdt, b.id, b.title, b.description, b.cost, b.created_at, p.type FROM buysell b INNER JOIN user u ON b.poster = u.id INNER JOIN producttype p ON b.type = p.id WHERE b.created_at < (now() - INTERVAL 60 DAY)');
+        return $result;
+    }
+
+    public static function getListChecked(){
+        $result = DB::select('SELECT u.username, u.sdt, b.id, b.title, b.description, b.cost, b.created_at, p.type FROM buysell b INNER JOIN user u ON b.poster = u.id INNER JOIN producttype p ON b.type = p.id WHERE b.checker <> 0');
+        return $result;
+    }
+
 }
