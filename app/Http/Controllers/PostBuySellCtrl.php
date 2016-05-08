@@ -9,9 +9,12 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use App\BuySell;
 use App\Image;
 use Session;
+use App\Product;
+use App\User;
+
 class PostBuySellCtrl extends Controller
 {
-	public function dopostproduct(){
+	public function dopostproduct(Request $request){
 		//return response()->json($a);
 		if(Session::has('user')){
 			//return response()->json(session('user'));
@@ -31,13 +34,14 @@ class PostBuySellCtrl extends Controller
 		$post_latitude = $_POST['post_latitude'];
 		$post_longitude = $_POST['post_longitude'];
 		$city_code = $_POST['city_code'];
-		//return response()->json($post_latitude);
+		
 		if($address_product_lg){
 			//return response()->json($address_product_lg);
 		}else{
 			$address_product_lg = $_POST['address_product_sm'];
 			//return response()->json($address_product_lg+"s");
 		}
+
 		if($title_product && $type_product && $address_product_lg && $cost_product && $mobilephone){
 			$filename = "";
 			
@@ -49,7 +53,10 @@ class PostBuySellCtrl extends Controller
 	    				break;
 	    			}
 	    		}
-	    		$result_buysell =BuySell::postproduct($poster, $title_product, $type_product, $description_detail, $address_product_lg, $cost_product, $filename, $mobilephone, $post_latitude, $post_longitude, $city_code);
+	    		$result_buysell =BuySell::postproduct($poster->id, $title_product, $type_product, $description_detail, $address_product_lg, $cost_product, $filename, $mobilephone, $post_latitude, $post_longitude, $city_code);
+	    		Product::updatePriority($type_product);
+
+	    		// return response()->json("aaaaa");
 				foreach($files as $file) {
 					if($file->getClientOriginalName()){
 						// Set the destination path
@@ -59,16 +66,27 @@ class PostBuySellCtrl extends Controller
 						// Copy the file in our upload folder
 						$file->move($destinationPath, $filename);
 						Image::insertImage($result_buysell,$filename);
+
 					}
-				}				
+				}			
 				//return response()->json($filename);
 			}else{
-				$result_buysell =BuySell::postproduct($poster, $title_product, $type_product, $description_detail, $address_product_lg, $cost_product, $filename, $mobilephone, $post_latitude, $post_longitude, $city_code);
+				$result_buysell =BuySell::postproduct($poster->id, $title_product, $type_product, $description_detail, $address_product_lg, $cost_product, $filename, $mobilephone, $post_latitude, $post_longitude, $city_code);
 			}
 			return response()->json("Bạn vừa rao vặt thành công.");
 		}else{
 			return response()->json("Lỗi rồi, vui lòng thử lại.");
 		}	
+	}
+
+	public function getcurentUserMobile()
+	{
+		$currentUser = Session::get('user');
+		$id = $currentUser->id;
+		//var_dump($id);
+		$userMobile = User::getcurentUserMobile($id);
+		//var_dump($userMobile);
+		return response()->json($userMobile);
 	}
 
 }

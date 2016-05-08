@@ -20,7 +20,11 @@ class BuySellCtrl extends Controller
 		if("" != $string){
 			$result = BuySell::searchKey($searchKey,$searchCity,$searchType);
 		}else{
-			$result = BuySell::selectTop100($searchCity,$searchType);
+			if("" == $searchType){
+				$result = BuySell::selectFirstTime($searchCity);
+			}else{
+				$result = BuySell::selectTop100($searchCity,$searchType);
+			}			
 		}	
 		return response()->json($result);
 	}

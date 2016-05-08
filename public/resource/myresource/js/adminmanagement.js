@@ -43,7 +43,7 @@ function accept_action(){
 	});
 
 	//get action
-	var action_type = $('#type_filter').val();
+	var action_type = $('#action_filter').val();
 	//commit to server
 	$.post("doactionaccept",
 	{

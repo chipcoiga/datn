@@ -13,7 +13,6 @@ use Session;
 
 class WelcomeCtrl extends Controller
 {
-
     public function gotoWelcome()
     {   
         return view('welcome')->with('user',Session::get('user'));
@@ -46,7 +45,7 @@ class WelcomeCtrl extends Controller
         if($username && $password){
             $result = User::getUser($username, $password);
             if($result){
-                Session::set('user',$result);
+                Session::put('user',$result);
                 return response()->json([true, Session::get('user')]);
             }
         }
@@ -71,7 +70,7 @@ class WelcomeCtrl extends Controller
     }
 
     public function dologout(){
-        Session::forget('user');
-        return view('welcome');
+        Session::forget('user',"");
+        return view('welcome')->with('user',Session::get('user'));
     }
 }

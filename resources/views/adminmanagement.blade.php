@@ -40,7 +40,7 @@
 					<li class="dropdown" id="profile_user">
 					<?php 
 						if($user != ""){
-							if($user->isAdmin){
+							if($user->isAdmin == 1){
                     			echo("<a href='' class='dropdown-toggle' id='dropdownMenu1' data-toggle='dropdown' aria-haspopup='true' aria-expanded='true'><span >Admin</span></a><ul class='dropdown-menu' aria-labelledby='dropdownMenu1'><li><a href='domanagement'>Quản lý</a></li><li><a href='dologout' >Đăng xuất</a></li></ul>");
 			                }
 						}?>				  				
@@ -74,7 +74,7 @@
 	    <div class="row">
 	    	<div class="col-lg-4 col-md-6 col-sm-7 list_action_top">
 		    	<div class="col-lg-8 col-md-7 col-sm-8 col-xs-7">
-		    		<select class="form-control" id="type_filter">
+		    		<select class="form-control" id="action_filter">
 			    		<option value="1">Duyệt bài</option>
 			    		<option value="2">Không duyệt bài</option>
 			    		<option value="3">Xóa bài</option>

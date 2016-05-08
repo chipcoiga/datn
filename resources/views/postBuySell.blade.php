@@ -8,7 +8,7 @@
     <script src="{{ URL::asset('resource/js/jquery-2.1.4.min.js')}}"></script>
     <script src="{{ URL::asset('resource/js/bootstrap.min.js')}}"></script>
     <script src="{{ URL::asset('resource/js/bootstrap-select.min.js')}}"></script>
-    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC_f2LWXwhv7iifDM3aRTyHBobAL8sTgzg&libraries=places"></script>
     <!--Css-->
     <link rel="stylesheet" href="{{ URL::asset('resource/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('resource/css/bootstrap-select.min.css') }}">
@@ -39,10 +39,10 @@
                     <li class="dropdown" id="profile_user">
                       <?php 
                         if($user != ""){
-                            if($user){
+                            if($user->isAdmin == 1){
                                 echo("<a href='' class='dropdown-toggle' id='dropdownMenu1' data-toggle='dropdown' aria-haspopup='true' aria-expanded='true'><span >Admin</span></a><ul class='dropdown-menu' aria-labelledby='dropdownMenu1'><li><a href='domanagement'>Quản lý</a></li><li><a href='dologout' >Đăng xuất</a></li></ul>");
                             }else{
-                                echo("<a href='dologout'><span>["+$user->username+"] Đăng xuất</span></a>");
+                                echo("<a href='dologout'><span>[".$user->username."] Đăng xuất</span></a>");
                             }
                         }else{
                             echo("<a href='' class='dropdown-toggle' data-toggle='modal' data-target='#login_register'><span >Đăng nhập/Đăng ký</span></a>");
@@ -119,7 +119,7 @@
                 <div class="col-lg-12 col-md-12 hidden-sm hidden-xs">
                     <fieldset class="form-group">
                         <label for="address_product_lg" class="address_product_lg label_title">Địa chỉ</label>
-                        <input type="text" class="form-control" id="address_product_lg" maxlength="80"
+                        <input type="text" class="form-control" id="address_product_lg" maxlength="80" onchange="address_onchange_lg();"
                                 >
                         <small class="text-muted">Kéo con trỏ ở bản đồ bên cạnh đến địa điểm của bạn</small>
                     </fieldset>
@@ -127,7 +127,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <fieldset class="form-group ">
                         <label for="cost_product" class="cost_product label_title">Giá</label>
-                        <input type="number" class="form-control" id="cost_product" placeholder="Đơn vị tiền: VNĐ">
+                        <input type="number" class="form-control post_address" id="cost_product" placeholder="Đơn vị tiền: VNĐ">
                     </fieldset>
                 </div>
 
@@ -170,7 +170,7 @@
                 <div class="hidden-lg hidden-md col-sm-12 col-xs-12">
                     <fieldset class="form-group">
                         <label for="address_product_sm" class="address_product_sm label_title">Địa chỉ</label>
-                        <input type="text" class="form-control" id="address_product_sm" maxlength="80"
+                        <input type="text" class="form-control" id="address_product_sm" maxlength="80" onchange="address_onchange_sm();" 
                                 >
                         <small class="text-muted">Kéo con trỏ ở bản đồ bên dưới đến địa điểm của bạn</small>
                     </fieldset>

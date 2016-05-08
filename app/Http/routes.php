@@ -18,6 +18,8 @@ Route::group(['middleware' => 'web'], function () {
 
 	//PostBuySellCtrl
 	Route::post('dopostproduct','PostBuySellCtrl@dopostproduct');
+	//getcurentUser
+	Route::post('getcurentUserMobile','PostBuySellCtrl@getcurentUserMobile');
 
 	//DetailProductCtrl
 	Route::post('getProductDetail','DetailProductCtrl@getProductDetail');

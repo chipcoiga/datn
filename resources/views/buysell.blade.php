@@ -40,10 +40,10 @@
 					<li class="dropdown" id="profile_user">
 					<?php 
 						if($user != ""){
-							if($user->isAdmin){
+							if($user->isAdmin == 1){
                     			echo("<a href='' class='dropdown-toggle' id='dropdownMenu1' data-toggle='dropdown' aria-haspopup='true' aria-expanded='true'><span >Admin</span></a><ul class='dropdown-menu' aria-labelledby='dropdownMenu1'><li><a href='domanagement'>Quản lý</a></li><li><a href='dologout' >Đăng xuất</a></li></ul>");
 			                }else{
-			                    echo("<a href='dologout'><span>["+$user->username+"] Đăng xuất</span></a>");
+			                    echo("<a href='dologout'><span>[".$user->username."] Đăng xuất</span></a>");
 			                }
 						}else{
 							echo("<a href='' class='dropdown-toggle' data-toggle='modal' data-target='#login_register'><span >Đăng nhập/Đăng ký</span></a>");

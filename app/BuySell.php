@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Product;
 
 class buysell extends Model
 {
@@ -43,9 +44,18 @@ class buysell extends Model
         return $results;
     }
 
+    public static function selectFirstTime($searchCity)
+    {
+        $maxType = Product::getMaxPriority();
+        $result = BuySell::select('id','title', 'imglink','cost','latitude','longitude','created_at')->where('place_id',$searchCity)->where('type', $maxType)->where('checker','<>',0)->take(100)->get();
+        return $result;
+    }
+
     public static function selectTop100($searchCity,$searchType)
     {
-        return BuySell::select('id','title', 'imglink','cost','latitude','longitude','created_at')->where('place_id',$searchCity)->where('type',$searchType)->where('checker','<>',0)->take(100)->get();
+        
+        $result = BuySell::select('id','title', 'imglink','cost','latitude','longitude','created_at')->where('place_id',$searchCity)->where('type', $searchType)->where('checker','<>',0)->take(100)->get();
+        return $result;
     }
 
     public static function getDetailByID($id){

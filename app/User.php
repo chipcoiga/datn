@@ -15,13 +15,19 @@ class user extends Model
     }
     
     public static function getUser($username, $password){
-        $user = User::select('username', 'isAdmin')->where('username',$username)->where('passhash',$password)->first();
+        $user = User::select('id','username', 'isAdmin')->where('username',$username)->where('passhash',$password)->first();
         return $user;
     }
 
     public static function getAllUser(){
         $listUser = User::get();
         return $listUser;
+    }
+
+    public static function getcurentUserMobile($id)
+    {
+        $mobile =  User::select('sdt')->where('id',$id)->first();
+        return $mobile;
     }
 
     public static function addUser($username, $password, $sdt){

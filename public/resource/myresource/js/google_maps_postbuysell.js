@@ -9,12 +9,24 @@ var icon = new google.maps.MarkerImage("resource/img/mapmarker48.png",
 var map = null;
 var geocoder = new google.maps.Geocoder();
 var latitude = 16.060244698576117;
-var longitude = 108.18938446044922;
+var longitude= 108.18938446044922;
 var subm_lat =null;
 var subm_lng = null;
 var fullAddress = null;
 var city_code = null;
 var autocomplete;
+
+$(document).ready(function(){
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        console.log("ko tim duoc");
+    }
+
+    $.post("getcurentUserMobile",function(data){
+        $('#mobilephone').val(data.sdt);
+    });
+});
 
 function isFormValid(){
     $('.label_title').css('color','black');
@@ -88,40 +100,95 @@ function  addMarkerPoint(lat, lng) {
         icon: icon,
         map: map
     });
+
     google.maps.event.addListener(marker, 'dragend', function(evt){
         map.setCenter(marker.position);
         subm_lat = evt.latLng.lat().toFixed(15);
         subm_lng = evt.latLng.lng().toFixed(14);
-        newLatLng = new google.maps.LatLng(subm_lat,subm_lng);
-        geocoder.geocode({       
-            latLng: newLatLng     
-        }, 
-            function(responses) 
-            {     
-                console.log(responses); 
-                $('#post_latitude').val(subm_lat);
-                $('#post_longitude').val(subm_lng);
-               if (responses && responses.length > 0) 
-               {        
-                   fullAddress=responses[0].formatted_address;
-                   $('#address_product_sm').val(fullAddress);
-                   $('#address_product_lg').val(fullAddress);
-                    if(responses.length >=2){
-                        city_code = responses[responses.length-2].place_id;
-                        $('#city_code').val(city_code);
-                        console.log("city_code: "+city_code);
-                    }else{
-                        city_code = responses[responses[0]].place_id;
-                        $('#city_code').val(city_code);
-                    }
-               } 
-               else 
-               {       
-                 city_code = "Không tìm thấy";
-               }   
-            }
-        );
+        showFullAddress(subm_lat,subm_lng);
+        // newLatLng = new google.maps.LatLng(subm_lat,subm_lng);
+        // geocoder.geocode({       
+        //     latLng: newLatLng     
+        // }, 
+        //     function(responses) 
+        //     {     
+        //         console.log(responses); 
+        //         $('#post_latitude').val(subm_lat);
+        //         $('#post_longitude').val(subm_lng);
+        //        if (responses && responses.length > 0) 
+        //        {        
+        //            fullAddress=responses[0].formatted_address;
+        //            $('#address_product_sm').val(fullAddress);
+        //            $('#address_product_lg').val(fullAddress);
+        //             if(responses.length >=2){
+        //                 city_code = responses[responses.length-2].place_id;
+        //                 $('#city_code').val(city_code);
+        //                 console.log("city_code: "+city_code);
+        //             }else{
+        //                 city_code = responses[responses[0]].place_id;
+        //                 $('#city_code').val(city_code);
+        //             }
+        //        } 
+        //        else 
+        //        {       
+        //          city_code = "Không tìm thấy";
+        //        }   
+        //     }
+        // );
     });
+}
+
+
+var autocomplete_lg;
+var autocomplete_sm;
+
+function address_onchange_lg(){
+    var place_lg = autocomplete_lg.getPlace();
+    //console.log(place_lg.coords.latitude);
+}
+
+function address_onchange_sm(){
+    var place_sm = autocomplete_sm.getPlace();
+    //console.log(place_sm.geometry.location.lat());
+}
+
+function showPosition(position) { 
+    latitude = position.coords.latitude;
+    longitude= position.coords.longitude;
+}
+
+function showFullAddress(latitude, longitude){
+    var fullAddress;
+    var city_code;
+    var newLatLng = new google.maps.LatLng(latitude,longitude);
+    geocoder.geocode({       
+        latLng: newLatLng     
+    }, 
+        function(responses) 
+        {     
+            console.log(responses); 
+            $('#post_latitude').val(subm_lat);
+            $('#post_longitude').val(subm_lng);
+           if (responses && responses.length > 0) 
+           {        
+               fullAddress=responses[0].formatted_address;
+               $('#address_product_sm').val(fullAddress);
+               $('#address_product_lg').val(fullAddress);
+                if(responses.length >=2){
+                    city_code = responses[responses.length-2].place_id;
+                    $('#city_code').val(city_code);
+                    console.log("city_code: "+city_code);
+                }else{
+                    city_code = responses[responses[0]].place_id;
+                    $('#city_code').val(city_code);
+                }
+           } 
+           else 
+           {       
+             city_code = "Không tìm thấy";
+           }   
+        }
+    );
 }
 
 function initMap(){
@@ -134,15 +201,18 @@ function initMap(){
         zoomControlOptions: {
             style:google.maps.ZoomControlStyle.DEFAULT
         }
-    });
+    });    
+    autocomplete_lg = new google.maps.places.Autocomplete(
+      (document.getElementById('address_product_lg')),
+      {types: ['geocode']});
+    autocomplete_sm = new google.maps.places.Autocomplete(
+      (document.getElementById('address_product_sm')),
+      {types: ['geocode']});
+    showFullAddress(latitude, longitude);
     addMarkerPoint(latitude, longitude);
-    // autocomplete = new google.maps.places.Autocomplete(
-    // (document.getElementById('address_product_sm')),
-    // { types: ['geocode'] });
-    // google.maps.event.addListener(autocomplete, 'place_changed', function() {
-    // });
 }
 google.maps.event.addDomListener(window, 'load', initMap);
+
 
 
 

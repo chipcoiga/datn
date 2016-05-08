@@ -123,7 +123,7 @@ function initMap(){
         }
     });
     center = bounds.getCenter();
-    getProductAjax("",'ChIJEyolkscZQjERBn5yhkvL8B0',1);
+    getProductAjax("",'ChIJEyolkscZQjERBn5yhkvL8B0',"");
 }
 google.maps.event.addDomListener(window, 'load', initMap);
 
