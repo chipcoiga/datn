@@ -101,6 +101,7 @@
             </div>
 		</div>
 		<div class="message-wrap col-lg-8 col-md-8 col-sm-7">
+			<input type="hidden" id="userChatWith" value=""></input>
 			<div class="msg-wrap" id="msg-wrap-box">
 				<div class="media msg ">
                     <a class="pull-left" href="#">

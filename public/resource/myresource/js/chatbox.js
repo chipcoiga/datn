@@ -6,9 +6,13 @@ function sendMessage(){
 		userChatWith:userChatWith
 	},
 	function(data){
-		
+
 	})
 }
 $(document).ready(function(){
-
+	$,post("getPreviousMsg",function(data){
+		for(var i=0;i<data.length;i++){
+			
+		}
+	});
 });
