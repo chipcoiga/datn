@@ -69,8 +69,17 @@ class WelcomeCtrl extends Controller
         return response()->json([true, $result]);
     }
 
+
+
+    public function chatpage(){
+        $user = Session::get('user');
+        return view('chat')->with('user',$user);
+    }
+
     public function dologout(){
         Session::forget('user',"");
         return view('welcome')->with('user',Session::get('user'));
     }
+
+
 }

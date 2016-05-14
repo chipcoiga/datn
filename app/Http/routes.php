@@ -9,6 +9,7 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('gotopostbuysell','WelcomeCtrl@gotoPostBuySell');
 	Route::get('gotoshare','WelcomeCtrl@gotoshare');
 	Route::get('gotofindLost','WelcomeCtrl@gotofindLost');
+	Route::get('chatpage','WelcomeCtrl@chatpage');
 
 	//BuySell controller
 	Route::post('doSearch','BuySellCtrl@doSearch');
