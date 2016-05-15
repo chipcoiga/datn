@@ -1,11 +1,11 @@
 <?php
 
 return [
-    $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-    $host = $url["host"];
-    $username = $url["user"];
-    $password = $url["pass"];
-    $database = substr($url["path"], 1);
+    // $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+    // $host = $url["host"];
+    // $username = $url["user"];
+    // $password = $url["pass"];
+    // $database = substr($url["path"], 1);
     /*
     |--------------------------------------------------------------------------
     | PDO Fetch Style
@@ -58,16 +58,16 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            // 'host' => env('DB_HOST', 'localhost'),
-            // 'port' => env('DB_PORT', '3306'),
-            // 'database' => env('DB_DATABASE', 'datn'),
-            // 'username' => env('DB_USERNAME', 'root'),
-            // 'password' => env('DB_PASSWORD', ''),
-            'host' => env('DB_HOST', $host),
+            'host' => env('DB_HOST', 'localhost'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', $database),
-            'username' => env('DB_USERNAME', $username),
-            'password' => env('DB_PASSWORD', $password),
+            'database' => env('DB_DATABASE', 'datn'),
+            'username' => env('DB_USERNAME', 'root'),
+            'password' => env('DB_PASSWORD', ''),
+            // 'host' => env('DB_HOST', $host),
+            // 'port' => env('DB_PORT', '3306'),
+            // 'database' => env('DB_DATABASE', $database),
+            // 'username' => env('DB_USERNAME', $username),
+            // 'password' => env('DB_PASSWORD', $password),
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
