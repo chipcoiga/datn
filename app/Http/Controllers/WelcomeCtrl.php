@@ -70,10 +70,30 @@ class WelcomeCtrl extends Controller
     }
 
 
+    public function gotochatpage(){
+        
+        if(Session::has('user')){
+            $user = Session::get('user');
+            return view('chat')->with('user',$user)->with('endUser',"");
+        }else{
+            return view('welcome')->with('user',Session::get('user'));
+        }
+    }
 
     public function chatpage(){
-        $user = Session::get('user');
-        return view('chat')->with('user',$user);
+        
+        if(Session::has('user')){
+            $user = Session::get('user');
+            $idProduct = $_GET['id'];
+            //var_dump($idProduct);
+            $endUserID = BuySell::getUserIDbyPost($idProduct);
+            //dd($endUserID);
+            $endUser = User::getUserbyID($endUserID);
+            //dd($endUser);
+            return view('chat')->with('user',$user)->with('endUser',$endUser);
+        }else{
+            return view('welcome')->with('user',Session::get('user'));
+        }
     }
 
     public function dologout(){

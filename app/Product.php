@@ -33,4 +33,6 @@ class product extends Model
     	}
     	return $result->id;
     }
+
+    
 }

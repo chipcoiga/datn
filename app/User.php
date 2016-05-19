@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class user extends Model
 {
@@ -36,5 +37,24 @@ class user extends Model
         $user->passhash = $password;
         $user->sdt = $sdt;
         $user->save();
+    }
+
+    public static function getUserbyID($endUserID)
+    {
+        $user = User::select('id','username')->where('id',$endUserID)->first();
+        //dd($user);
+        return $user;
+    }
+
+    public static function getListUserFromListID($id){
+        //var_dump($listFromUser);
+        // for($i = 0; $i < $listFromUser->length; $i++){
+
+        // }
+        // $listUser = User::select('username')->whereIn('id',$listFromUser)->get();
+        //var_dump($listUser);
+        $listUser = DB::select('SELECT username from user where id in (SELECT DISTINCT fromID from message WHERE toID = :id)',['id'=>$id]);
+        //var_dump($listUser);
+        return $listUser;
     }
 }

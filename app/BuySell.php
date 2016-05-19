@@ -93,4 +93,10 @@ class buysell extends Model
         return $result;
     }
 
+    public static function getUserIDbyPost($idProduct)
+    {
+        $result = BuySell::where('id',$idProduct)->first();
+        //dd($result);
+        return $result->poster;
+    }
 }

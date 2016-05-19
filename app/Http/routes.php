@@ -10,6 +10,7 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('gotoshare','WelcomeCtrl@gotoshare');
 	Route::get('gotofindLost','WelcomeCtrl@gotofindLost');
 	Route::get('chatpage','WelcomeCtrl@chatpage');
+	Route::get('gotochatpage','WelcomeCtrl@gotochatpage');
 
 	//BuySell controller
 	Route::post('doSearch','BuySellCtrl@doSearch');
@@ -35,4 +36,8 @@ Route::group(['middleware' => 'web'], function () {
 	Route::post('getListPostFirstTime','AdminCtrl@getListPostFirstTime');
 	Route::post('doactionaccept','AdminCtrl@doactionaccept');
 	Route::post('load_byType','AdminCtrl@load_byType');
+
+	//chatpage
+	Route::post('getListUserChat','ChatCtrl@getListUserChat');
+
 });

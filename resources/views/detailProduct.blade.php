@@ -126,7 +126,9 @@
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 well well-sm">
                                 Chi tiết: <span id="description_product">1242</span>
                             </div>
+                            <?php echo("<a href='chatpage?id=".$idProduct."'><button type='button' class='btn btn-primary'>Liên hệ</button></a>"); ?>
                         </div>
+
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
                             
                         </div>
