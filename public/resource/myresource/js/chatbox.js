@@ -62,16 +62,16 @@ function listUserChatItem(data,img){
 
 function showMessage(data, img, curentUser){
 	var temp;
-	console.log(data.fromUser);
-	console.log(curentUser);
+	// console.log(data.fromUser);
+	// console.log(curentUser);
 	if(data.fromUser == curentUser){
 		temp = "<hr>"
         +"<a class='pull-right' href='#'>"
             +"<img class='media-object' data-src='holder.js/64x64' alt='64x64' style='width: 32px; height: 32px;' src='"+img+"'>"
         +"</a>"
         +"<div class='media-body'>"
-            +"<h5 class='media-heading'>"+data.fromUser+"</h5>"
-            +"<small class='col-md-9'>"+data.msg+"</small>"
+            +"<h5 class='pull-right media-heading'>"+data.fromUser+"</h5>"
+            +"<small class='col-xs-offset-3 col-xs-9' style='float:right;'>"+data.msg+"</small>"
         +"</div>";
 	}else{
 		temp = "<hr>"
