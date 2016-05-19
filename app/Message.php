@@ -15,4 +15,9 @@ class message extends Model
     	
     	return $result;
     }
+    public static function getListConversation($userID, $curentID){
+    	$result = DB::select('SELECT fromUser, toUser, msg FROM message WHERE fromUser = :pr1 and toUser = :pr2 OR fromUser = :pr3 and toUser = :pr4',['pr1'=>$userID, 'pr2'=>$curentID,'pr3'=>$curentID,'pr4'=>$userID]);
+    	//var_dump($result);
+    	return $result;
+    }
 }

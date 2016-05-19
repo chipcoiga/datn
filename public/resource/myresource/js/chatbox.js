@@ -18,7 +18,7 @@ function sendMessage(){
 }
 $(document).ready(function(){
 	$.post("getListUserChat",function(data){
-		console.log(data);
+		//console.log(data);
 		for(var i=0;i<data.length;i++){
 			//console.log(data[i].username);
 			$('#listUserChat').append(listUserChatItem(data[i].username,dataImage));
@@ -33,18 +33,56 @@ $(document).ready(function(){
  //    // $('#msg').append(li+msg.username+': '+msg.msgcontent+endli);
  //  	});
 });
-function showConversation(userfsdname){
-	console.log(userfsdname);
+function showConversation(username){
+	//console.log(username);
+	$.post("showConversation",{
+		username:username
+	},function(data){
+		//console.log(data);
+		$('#contentMsg').html('');
+		var curentUser = $('#idgetter').val();
+		console.log("fdfd"+curentUser);
+		//$('#idgetter').val(username);
+		for(var i=0;i<data.length;i++){
+			$('#contentMsg').append(showMessage(data[i],dataImage,curentUser));
+		}
+	});
 }
 function listUserChatItem(data,img){
-	var temp = "<div class='media conversation' onclick='showConversation("+data+");'>"
+	var temp = '<div class="media conversation" onclick="showConversation(\''+data+'\');">'
 		+"<a class='pull-left' href='#'>"
-			+"<img class='media-object' data-src='holder.js/64x64' alt='64x64' style='width: 50px; height: 50px;' src='"+img+"'>"
+			+"<img class='media-object' data-src='holder.js/64x64' alt='64x64' style='width: 50px; height: 50px;' src='"+img+"'/>"
 		+"</a>"
 		+"<div class='media-body'>"
     		+"<h5 class='media-heading'>"+data+"</h5>"
     	+"</div>"
     +"</div>";
+    return temp;
+}
+
+function showMessage(data, img, curentUser){
+	var temp;
+	console.log(data.fromUser);
+	console.log(curentUser);
+	if(data.fromUser == curentUser){
+		temp = "<hr>"
+        +"<a class='pull-right' href='#'>"
+            +"<img class='media-object' data-src='holder.js/64x64' alt='64x64' style='width: 32px; height: 32px;' src='"+img+"'>"
+        +"</a>"
+        +"<div class='media-body'>"
+            +"<h5 class='media-heading'>"+data.fromUser+"</h5>"
+            +"<small class='col-md-9'>"+data.msg+"</small>"
+        +"</div>";
+	}else{
+		temp = "<hr>"
+        +"<a class='pull-left' href='#'>"
+            +"<img class='media-object' data-src='holder.js/64x64' alt='64x64' style='width: 32px; height: 32px;' src='"+img+"'>"
+        +"</a>"
+        +"<div class='media-body'>"
+            +"<h5 class='media-heading'>"+data.fromUser+"</h5>"
+            +"<small class='col-md-9'>"+data.msg+"</small>"
+        +"</div>";
+	}	
     return temp;
 }
 

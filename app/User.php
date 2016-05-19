@@ -47,14 +47,13 @@ class user extends Model
     }
 
     public static function getListUserFromListID($id){
-        //var_dump($listFromUser);
-        // for($i = 0; $i < $listFromUser->length; $i++){
-
-        // }
-        // $listUser = User::select('username')->whereIn('id',$listFromUser)->get();
-        //var_dump($listUser);
-        $listUser = DB::select('SELECT username from user where id in (SELECT DISTINCT fromID from message WHERE toID = :id)',['id'=>$id]);
+        $listUser = DB::select('SELECT username from user where username in (SELECT DISTINCT fromUser from message WHERE toUser = :id)',['id'=>$id]);
         //var_dump($listUser);
         return $listUser;
+    }
+
+    public static function getIDByUsername($username){
+        $id = User::select('id')->where('username',$username)->first();
+        return $id->id;
     }
 }

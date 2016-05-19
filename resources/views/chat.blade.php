@@ -98,41 +98,16 @@
 		<div class="message-wrap col-lg-8 col-md-8 col-sm-7">
 			<input type="hidden" id="userChatWith" value=""></input>
 			<div class="msg-wrap" id="msg-wrap-box">
-				<input type="hidden" value="" name="idgetter"></input>
+				
 				<?php 
 				if($endUser !=""){
-					echo ("<input type='hidden' value='".$endUser->id."' name='idgetter'></input>");
-				}
+					echo ("<input type='hidden' value='".$endUser->username."' name='idgetter' id='idgetter'></input>");
+				}else{
+                    echo ("<input type='hidden' value='' name='idgetter' id='idgetter'></input>");
+                };
 				?>
-				<div class="media msg ">
-					<hr>
-                    <a class="pull-left" href="#">
-                        <img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 32px; height: 32px;" src="">
-                    </a>
-                    <div class="media-body">
-                        <small class="pull-right time"><i class="fa fa-clock-o"></i> 12:10am</small>
-                        <h5 class="media-heading">Naimish Sakhpara</h5>
-                        <small class="col-md-9">Location H-2, Ayojan Nagar, Near Gate-3, Near
-                            Shreyas Crossing Dharnidhar Derasar,
-                            Paldi, Ahmedabad 380007, Ahmedabad,
-                            India
-                            Phone 091 37 669307
-                            Email aapamdavad.district@gmail.com</small>
-                    </div>
-                    <hr>
-                    <a class="pull-right" href="#">
-                        <img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 32px; height: 32px;" src="">
-                    </a>
-                    <div class="media-body">
-                        <small class="pull-left time"><i class="fa fa-clock-o"></i> 12:10am</small>
-                        <h5 class="pull-right media-heading">Naimish Sakhpara</h5>
-                        <small class="col-md-offset-3 col-md-9" style="text-align: right;">Location H-2, Ayojan Nagar, Near Gate-3, Near
-                            Shreyas Crossing Dharnidhar Derasar,
-                            Paldi, Ahmedabad 380007, Ahmedabad,
-                            India
-                            Phone 091 37 669307
-                            Email aapamdavad.district@gmail.com</small>
-                    </div>
+				<div class="media msg" id="contentMsg">
+					
                 </div>
 			</div>
 			<div class="input-group send-wrap ">

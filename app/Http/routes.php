@@ -39,5 +39,6 @@ Route::group(['middleware' => 'web'], function () {
 
 	//chatpage
 	Route::post('getListUserChat','ChatCtrl@getListUserChat');
+	Route::post('showConversation','ChatCtrl@showConversation');
 
 });

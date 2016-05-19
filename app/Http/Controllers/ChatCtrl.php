@@ -12,11 +12,17 @@ class ChatCtrl extends Controller
 {
 	public function getListUserChat(){
 		$user = Session::get('user');
-		//var_dump($user->id);
-		// $listFromUser = Message::getListUserChat($user->id);
-		// var_dump($listFromUser);
-		$listUser = User::getListUserFromListID($user->id);
+		$listUser = User::getListUserFromListID($user->username);
 		//var_dump($listUser);
 		return response()->json($listUser);
+	}
+
+	public function showConversation(){
+		$username = $_POST['username'];
+		$user = Session::get('user');
+		//var_dump($userID);
+		$conversation = Message::getListConversation($username, $user->username);
+		//var_dump($conversation);
+		return $conversation;
 	}
 }
