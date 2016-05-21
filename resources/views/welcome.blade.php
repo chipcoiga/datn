@@ -34,7 +34,9 @@
                     <li><a href="gotobuysell">Mua bán - rao vặt</a></li>
                     <li><a href="gotoshare">Cho tặng đồ</a></li>
                     <li><a href="gotofindLost">Tìm đồ thất lạc</a></li>
-                    <li><a href="gotochatpage" class="glyphicon glyphicon-globe">4</a></li>
+                    <?php if($user){
+                        echo("<li><a href='gotochatpage' class='glyphicon glyphicon-globe'><span id='notificationIcon' value='".$user->username."'></span></a></li>");
+                    } ?>
                     <li class="dropdown" id="profile_user">
                       <?php 
                         if($user){

@@ -36,7 +36,10 @@
                     <li><a href="gotobuysell">Mua bán - rao vặt</a></li>
                     <li><a href="gotoshare">Cho tặng đồ</a></li>
                     <li><a href="gotofindLost">Tìm đồ thất lạc</a></li>
-                    <li><a href="chatpage" class="glyphicon glyphicon-globe">4</a></li>
+                    <?php if($user){
+                        echo ("<input type='hidden' id='currentUser' value='".$user->username."' style='width: 0; height: 0;' />");
+                        echo("<li><a href='gotochatpage' class='glyphicon glyphicon-globe'><span id='notificationIcon' ></span></a></li>");
+                    } ?>
                     <li class="dropdown" id="profile_user">
                       <?php 
                         if($user){
@@ -96,14 +99,13 @@
 
 		</div>
 		<div class="message-wrap col-lg-8 col-md-8 col-sm-7">
-			<input type="hidden" id="userChatWith" value=""></input>
 			<div class="msg-wrap" id="msg-wrap-box">
 				
 				<?php 
 				if($endUser !=""){
-					echo ("<input type='hidden' value='".$endUser->username."' name='idgetter' id='idgetter'></input>");
+					echo ("<input type='hidden' value='".$endUser->username."' name='idgetter' id='userChatWith'></input>");
 				}else{
-                    echo ("<input type='hidden' value='' name='idgetter' id='idgetter'></input>");
+                    echo ("<input type='hidden' value='' name='idgetter' id='userChatWith'></input>");
                 };
 				?>
 				<div class="media msg" id="contentMsg">

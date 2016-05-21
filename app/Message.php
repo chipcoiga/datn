@@ -20,4 +20,7 @@ class message extends Model
     	//var_dump($result);
     	return $result;
     }
+    public static function saveMsg($msgSend,$userChatWithSend,$curentUserSend){
+        Message::insert(['fromUser'=>$curentUserSend, 'toUser'=>$userChatWithSend, 'msg'=>$msgSend]);
+    }
 }

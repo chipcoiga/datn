@@ -3,6 +3,8 @@ $.ajaxSetup({
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
   }
 });
+
+//var currentUser;
 function dologin(){
     var username = $('#username_login').val();
     var password = $('#password_login').val();
@@ -15,17 +17,19 @@ function dologin(){
             if(!data[0]){
                 alert('Đăng nhập thất bại');
             }else{
+                //currentUser=data[1].username;
                 if(data[1].isAdmin){
-                    console.log("admin");
+                    //console.log("admin");
                     var content_li = "<a href='' class='dropdown-toggle' id='dropdownMenu1' data-toggle='dropdown' aria-haspopup='true' aria-expanded='true'><span >Admin</span></a><ul class='dropdown-menu' aria-labelledby='dropdownMenu1'><li><a href='domanagement'>Quản lý</a></li><li><a href='#'' onclick='dologout();'>Đăng xuất</a></li></ul>";
                     $('#profile_user').html(content_li);
                 }else{
                     var content_li = "<a href='' onclick='dologout();'><span>["+data[1].username+"] Đăng xuất</span></a>";
                     $('#profile_user').html(content_li);
                 }
-                console.log("f");
+                //console.log("f");
+                $("<li><a href='gotochatpage' class='glyphicon glyphicon-globe'><span id='notificationIcon'></span></a></li>").insertBefore("#profile_user");
             }
-            console.log(data);
+            //console.log(data);
         });
     }else{
         alert("Vui lòng điền đầy đủ thông tin");

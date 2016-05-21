@@ -25,4 +25,11 @@ class ChatCtrl extends Controller
 		//var_dump($conversation);
 		return $conversation;
 	}
+	public function sendMessage(){
+		$msgSend=$_POST['msgSend'];
+		$userChatWithSend = $_POST['userChatWithSend'];
+		$curentUserSend = $_POST['curentUserSend'];
+		Message::saveMsg($msgSend,$userChatWithSend,$curentUserSend);
+		return response()->json('f');
+	}
 }
