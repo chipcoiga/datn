@@ -95,10 +95,18 @@
 </header>
 <div class="container">
 	<div class="row">
+
 		<div class="conversation-wrap col-lg-3 col-md-3 col-sm-4" id="listUserChat">
 
 		</div>
 		<div class="message-wrap col-lg-8 col-md-8 col-sm-7">
+            <div class="col-xs-12">
+                <?php 
+                    if($endUser !=""){
+                        echo("<span style='font-weight: bold;' id='conversationName'>Đang trò chuyện: ".$endUser->username."</span>");
+                    }
+                ?>
+            </div>
 			<div class="msg-wrap" id="msg-wrap-box">
 				
 				<?php 

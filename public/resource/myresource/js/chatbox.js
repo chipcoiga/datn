@@ -24,8 +24,7 @@ function sendMessage(){
 	}
 	else{
 		return;
-	}
-	
+	}	
 }
 
 socket.on('showMsg', function(msg){
@@ -33,11 +32,26 @@ socket.on('showMsg', function(msg){
     $('#contentMsg').append(showMessageReceiver(msg[0],msg[1],msg[2]));
 });
 
+var height = 0;
+
+
 $(document).ready(function(){
 	$.post("getListUserChat",function(data){
 		for(var i=0;i<data.length;i++){
 			$('#listUserChat').append(listUserChatItem(data[i].username,dataImage));
 		}
+		var _idgetter = $('#userChatWith').val();
+		//console.log('_idgetter: ' +_idgetter);
+		for(var i=0;i<data.length;i++){
+			if((data[i].username == _idgetter) && _idgetter){
+
+				//console.log('click');
+				$('#'+data[i].username).trigger('click');
+				break;
+			}
+		}
+		console.log($('#contentMsg').height());
+		$('#contentMsg').animate({scrollTop: 1000});
 	});
 });
 function showConversation(username){
@@ -47,13 +61,16 @@ function showConversation(username){
 		$('#contentMsg').html('');
 		curentUser = $('#currentUser').val();
 		$('#userChatWith').val(username);
+		$('#conversationName').text("Đang trò chuyện: "+username);
 		for(var i=0;i<data.length;i++){
 			$('#contentMsg').append(showMessage(data[i],dataImage,curentUser));
 		}
+		
 	});
+			
 }
 function listUserChatItem(data,img){
-	var temp = '<div class="media conversation" onclick="showConversation(\''+data+'\');">'
+	var temp = '<div class="media conversation" onclick="showConversation(\''+data+'\');" id="'+data+'">'
 		+"<a class='pull-left' href='#'>"
 			+"<img class='media-object' data-src='holder.js/64x64' alt='64x64' style='width: 50px; height: 50px;' src='"+img+"'/>"
 		+"</a>"
@@ -85,6 +102,7 @@ function showMessage(data, img, curentUser){
             +"<small class='col-md-9'>"+data.msg+"</small>"
         +"</div>";
 	}	
+	//$('#contentMsg').animate({scrollTop: 1000});
     return temp;
 }
 
@@ -116,7 +134,3 @@ function showMessageReceiver(msg,sendto, sendfrom)
     return temp;
 }
 
-$('#contentMsg').change(function(){
-	//.scrollTop($('#contentMsg').height());
-	scrollTop: $("#contentMsg").scrollHeight
-}); 
