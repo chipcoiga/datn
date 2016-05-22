@@ -8,6 +8,7 @@ use App\Location;
 use App\BuySell;
 use App\Product;
 use App\User;
+use App\Keyword;
 use Session;
 
 class AdminCtrl extends Controller
@@ -54,11 +55,16 @@ class AdminCtrl extends Controller
 		}else if($type_filter == 2){
 			$result = BuySell::getListOldest();
 		}else if($type_filter == 3){
-
+			
 		}else if($type_filter == 4){
 			$result = BuySell::getListChecked();
 		}
 
+		return response()->json($result);
+	}
+
+	public function getListKey(){
+		$result = Keyword::getListKey();
 		return response()->json($result);
 	}
 }

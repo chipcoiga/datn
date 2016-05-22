@@ -67,9 +67,13 @@ function checker_header_checked(){
 $(document).ready(function(){
 	$.post('getListPostFirstTime',
 		{},function(data,status){
-			console.log(data,status);
+			//console.log(data,status);
 			if(data){
 				load_data_func(data);
 			}
+	});
+
+	$.post('getListKey',function(data){
+		console.log(data);
 	});
 });

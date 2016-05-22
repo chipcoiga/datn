@@ -36,6 +36,7 @@ Route::group(['middleware' => 'web'], function () {
 	Route::post('getListPostFirstTime','AdminCtrl@getListPostFirstTime');
 	Route::post('doactionaccept','AdminCtrl@doactionaccept');
 	Route::post('load_byType','AdminCtrl@load_byType');
+	Route::post('getListKey','AdminCtrl@getListKey');
 
 	//chatpage
 	Route::post('getListUserChat','ChatCtrl@getListUserChat');

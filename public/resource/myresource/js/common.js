@@ -3,8 +3,18 @@ $.ajaxSetup({
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
   }
 });
+var socket=io.connect('http://localhost:5000');
+var curentUser;
 
-//var currentUser;
+socket.on('showMsg', function(msg){
+    //console.log('receiver from'+msg);
+    //$('#contentMsg').append(showMessageReceiver(msg[0],msg[1],msg[2]));
+    if(msg[1] == curentUser && curentUser){
+        console.log("sdfs");
+        $('#notificationIcon').css("color", "red");
+    }
+});
+
 function dologin(){
     var username = $('#username_login').val();
     var password = $('#password_login').val();
@@ -64,3 +74,7 @@ function doregister(){
         alert("Vui lòng điền đầy đủ thông tin");
     }
 }
+
+$(document).ready(function(){
+    curentUser = $('#currentUser').val();
+});

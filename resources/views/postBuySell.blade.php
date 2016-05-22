@@ -7,6 +7,7 @@
     <!--JS-->
     <script src="{{ URL::asset('resource/js/jquery-2.1.4.min.js')}}"></script>
     <script src="{{ URL::asset('resource/js/bootstrap.min.js')}}"></script>
+    <script src="{{ URL::asset('resource/js/socket.io.js')}}"></script>
     <script src="{{ URL::asset('resource/js/bootstrap-select.min.js')}}"></script>
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC_f2LWXwhv7iifDM3aRTyHBobAL8sTgzg&libraries=places"></script>
     <!--Css-->
@@ -37,6 +38,7 @@
                     <li><a href="gotoshare">Cho tặng đồ</a></li>
                     <li><a href="gotofindLost">Tìm đồ thất lạc</a></li>
                     <?php if($user){
+                        echo ("<input type='hidden' id='currentUser' value='".$user->username."' style='width: 0; height: 0;' />");
                         echo("<li><a href='gotochatpage' class='glyphicon glyphicon-globe'><span id='notificationIcon' value='".$user->username."'></span></a></li>");
                     } ?>
                     <li class="dropdown" id="profile_user">

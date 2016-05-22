@@ -28,7 +28,7 @@ function sendMessage(){
 }
 
 socket.on('showMsg', function(msg){
-    console.log('receiver from'+msg);
+    //console.log('receiver from'+msg);
     $('#contentMsg').append(showMessageReceiver(msg[0],msg[1],msg[2]));
 });
 
